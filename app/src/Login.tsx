@@ -74,38 +74,44 @@ const Login = () => {
                     </p>
                 </section>
             ) : (
-                <section>
-                    <p ref={errRef as any} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                    <h1>Sign In</h1>
-                    <form onSubmit={handleSubmit}>
-                        <label htmlFor="username">Username:</label>
-                        <input
-                            type="text"
-                            id="username"
-                            ref={userRef as any}
-                            autoComplete="off"
-                            onChange={(e) => setUser(e.target.value)}
-                            value={user}
-                            required
-                        />
+                <section className="frame">
+                    <div className='login'>
 
-                        <label htmlFor="password">Password:</label>
-                        <input
-                            type="password"
-                            id="password"
-                            onChange={(e) => setPwd(e.target.value)}
-                            value={pwd}
-                            required
-                        />
-                        <button>Sign In</button>
-                    </form>
-                    <p>
-                        Need an Account?<br />
-                        <span className="line">
-                            {/*put router link here*/}
-                            <a href="#">Sign Up</a>
-                        </span>
-                    </p>
+
+                        <p ref={errRef as any} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+                        <h1>Sign In</h1>
+                        <form className="form" onSubmit={handleSubmit}>
+                            <label className="laber" htmlFor="username">Username:</label>
+                            <input
+                                className='input'
+                                type="text"
+                                id="username"
+                                ref={userRef as any}
+                                autoComplete="off"
+                                onChange={(e) => setUser(e.target.value)}
+                                value={user}
+                                required
+                            />
+
+                            <label className="laber" htmlFor="password">Password:</label>
+                            <input
+                                className='input'
+                                type="password"
+                                id="password"
+                                onChange={(e) => setPwd(e.target.value)}
+                                value={pwd}
+                                required
+                            />
+                            <button className='button'>Sign In</button>
+                        </form>
+                        <p className="sign-up">
+                            Need an Account?<br />
+                            <span className="line">
+                                {/*put router link here*/}
+                                <a href="#">Sign Up</a>
+                            </span>
+                        </p>
+                    </div>
                 </section>
             )}
         </>
