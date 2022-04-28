@@ -35,8 +35,32 @@ const Login = () => {
         setErrMsg('');
     }, [user, pwd])
 
+    const [isActive, setActive] = useState(false);
+
+    const showHidePassword = (e: any) => {
+        e.preventDefault();
+        // console.log('change');
+        setActive(!isActive);
+
+        const input = document.getElementById('password-input') as any;
+        if (input.getAttribute('type') === 'password') {
+            (e.target as Element).classList.add('view');
+            input.setAttribute('type', 'text');
+            // "bi bi-eye-slash-fill"
+        } else {
+            (e.target as Element).classList.remove('view');
+            input.setAttribute('type', 'password');
+        }
+        return false;
+    }
+
+
+
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
+
+
+
 
         try {
             const response = await axios.post(LOGIN_URL,
@@ -104,22 +128,25 @@ const Login = () => {
                             </div>
 
                             <label className="laber" htmlFor="password">
-                                {/* <i className="bi bi-lock-fill"></i> */}
                                 Password:</label>
-                            {/* <i className="bi bi-eye-slash-fill"></i> */}
                             <div className='inputWithIcon'>
                                 <input
                                     className='input'
                                     type="password"
-                                    id="password"
+                                    id="password-input"
+                                    // id="password"
                                     onChange={(e) => setPwd(e.target.value)}
                                     value={pwd}
+                                    // autocomplete="current-password"
                                     required
                                 /><i className="bi bi-lock-fill"></i>
-                                <a href="#" className='hide-code'>
-                                    <i className="bi bi-eye-slash-fill"></i>
+                                <a href="#" className="password-control" onClick={showHidePassword}>
+                                    <i
+                                        className={isActive ? "bi bi-eye-slash-fill" : "bi bi-eye-fill"} ></i>
                                     {/* <i className="bi bi-eye-fill"></i> */}
                                 </a>
+
+
 
                             </div>
 
