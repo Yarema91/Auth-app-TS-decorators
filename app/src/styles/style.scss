@@ -11,7 +11,6 @@ html,
 body {
   font-family: "Athiti", sans-serif;
   font-style: normal;
-
   background-color: #b1e5d3;
 }
 
@@ -23,7 +22,6 @@ body {
   margin-top: 2%;
   max-width: 1064.38px;
   height: 756.89px;
-  //   height: fit-content;
   padding-left: 20px;
   background-color: var(--secondcolor);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.125), 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -62,7 +60,6 @@ body {
   box-sizing: border-box;
   transition: 0.3s;
   font-size: 17.7396px;
-  //   font-weight: 600;
 }
 
 .input:focus {
@@ -112,7 +109,6 @@ h1 {
 
 .inputWithIcon {
   position: relative;
-
   a {
     justify-content: flex-end;
     position: absolute;
@@ -130,13 +126,9 @@ h1 {
   .bi-eye-slash-fill {
     background-color: antiquewhite;
     position: relative;
-    //   box-sizing: border-box;
     display: flex;
     transform: translateX(30px);
     justify-content: flex-end;
-    //   align-items: center;
-    // right: 40px;
-    //   top: 21px;
   }
 }
 
@@ -174,7 +166,6 @@ h1 {
     .form {
       display: flex;
       margin: auto;
-      // flex-direction: column;
       align-items: center;
       justify-content: center;
     }

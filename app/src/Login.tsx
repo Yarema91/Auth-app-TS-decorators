@@ -27,6 +27,9 @@ const Login = () => {
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
+    const [isActive, setActive] = useState(false);
+
+
     useEffect(() => {
         userRef.current.focus();
     }, [])
@@ -35,32 +38,14 @@ const Login = () => {
         setErrMsg('');
     }, [user, pwd])
 
-    const [isActive, setActive] = useState(false);
 
     const showHidePassword = (e: any) => {
         e.preventDefault();
-        // console.log('change');
         setActive(!isActive);
-
-        const input = document.getElementById('password-input') as any;
-        if (input.getAttribute('type') === 'password') {
-            (e.target as Element).classList.add('view');
-            input.setAttribute('type', 'text');
-            // "bi bi-eye-slash-fill"
-        } else {
-            (e.target as Element).classList.remove('view');
-            input.setAttribute('type', 'password');
-        }
-        return false;
     }
-
-
 
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-
-
-
 
         try {
             const response = await axios.post(LOGIN_URL,
@@ -104,15 +89,15 @@ const Login = () => {
                 </section>
             ) : (
                 <section className="frame row">
-                    <Lottie className='animation col-6' animationData={Animation} />
+                    <Lottie
+                        className='animation col-6'
+                        loop={true}
+                        animationData={Animation} />
                     <div className='login col-6'>
-
-
                         <p ref={errRef as any} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                         <h1>Sign In</h1>
                         <form className="form" onSubmit={handleSubmit}>
                             <label className="laber" htmlFor="username">
-                                {/* <i className="bi bi-person-circle"></i> */}
                                 Username:</label>
                             <div className='inputWithIcon'>
                                 <input
@@ -126,30 +111,22 @@ const Login = () => {
                                     required
                                 /><span className="bi bi-person-fill"></span>
                             </div>
-
                             <label className="laber" htmlFor="password">
                                 Password:</label>
                             <div className='inputWithIcon'>
                                 <input
                                     className='input'
-                                    type="password"
-                                    id="password-input"
-                                    // id="password"
+                                    type={isActive ? "text" : "password"}
+                                    id="password"
                                     onChange={(e) => setPwd(e.target.value)}
                                     value={pwd}
-                                    // autocomplete="current-password"
-                                    required
                                 /><i className="bi bi-lock-fill"></i>
                                 <a href="#" className="password-control" onClick={showHidePassword}>
                                     <i
-                                        className={isActive ? "bi bi-eye-slash-fill" : "bi bi-eye-fill"} ></i>
-                                    {/* <i className="bi bi-eye-fill"></i> */}
+                                        className={isActive ? "bi bi-eye-fill" : "bi bi-eye-slash-fill"}>
+                                    </i>
                                 </a>
-
-
-
                             </div>
-
                             <button className='button'>Sign In</button>
                         </form>
                         <p className="sign-up">
@@ -158,9 +135,7 @@ const Login = () => {
                                 {/*put router link here*/}
                                 <a href="#">Sign Up</a>
                             </span>
-
                         </p>
-
                     </div>
                 </section>
             )}
